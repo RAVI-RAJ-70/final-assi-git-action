@@ -8,9 +8,9 @@ terraform {
 }
 
 # Configure the AWS Provider
-provider "aws" {
-  region = "ap-south-1"
-}
+#provider "aws" {
+ # region = "ap-south-1"
+#}
 
 /* provider "aws" {
     alias = "singapore"
