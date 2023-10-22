@@ -45,12 +45,17 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+ workflow_dispatch:
+    inputs:
+      region:
+        description: 'AWS Region'
+        required: true
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
 jobs:
   terraform:
@@ -80,7 +85,7 @@ jobs:
         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
         aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
         aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
-        aws-region: ap-south-1   
+        aws-region: ${{ inputs.region }}    
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
